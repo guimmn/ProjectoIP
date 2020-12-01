@@ -52,6 +52,7 @@ public class Image {
 	}
 	
 	//3 - função para duplicar uma imagem e redefinir o seu tamanho conforme um factor
+	//esta parece estar a funcionar perfeitamente!
 	
 	static ColorImage scale(ColorImage img, double factor){
 		
@@ -68,8 +69,6 @@ public class Image {
 			}
 			return scaledImg;
 	}
-
-	
 
 	
 	
