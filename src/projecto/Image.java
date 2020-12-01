@@ -24,7 +24,7 @@ public class Image {
 			for(int yi = 0; yi < base.getHeight(); yi++){
 				
 				if(xi >= x && xi < x + paste.getWidth() && yi >= y && yi < y + paste.getHeight()){
-					if(!(paste.getColor(xi, yi).isEqualTo(TRANSPARENT))){
+					if(!(paste.getColor(xi - x, yi - x).isEqualTo(TRANSPARENT))){
 				
 						Color c = paste.getColor(xi - x, yi - y);
 					
@@ -51,35 +51,16 @@ public class Image {
 		
 	}
 	
-	//2 - função para criar fundo de poster
-	// ! esta função dá-me erro na segunda tentativa de paste, mas n sei pq...
-	
-	static ColorImage posterBg(ColorImage pattern, int width, int height){
-		
-		ColorImage bg = new ColorImage(width, height);
-		
-		for(int y = 0; y < bg.getHeight(); y += pattern.getHeight()){
-			
-			for(int x = 0; x < bg.getWidth(); x += pattern.getWidth()){
-				
-				Image.paste(bg, pattern, x, y);
-			}
-		}
-		
-		return bg;
-		
-	}
-	
 	//3 - função para duplicar uma imagem e redefinir o seu tamanho conforme um factor
 	
-	static ColorImage scale(ColorImage img, int factor){
+	static ColorImage scale(ColorImage img, double factor){
 		
-		ColorImage scaledImg = new ColorImage(img.getWidth()*factor,img.getHeight()*factor);
+		ColorImage scaledImg = new ColorImage((int)(img.getWidth()*factor),(int)(img.getHeight()*factor));
 		
 			for(int x = 0; x < scaledImg.getWidth() ; x++){
 				for(int y = 0; y < scaledImg.getHeight(); y++){
 					
-					Color c = img.getColor(x/factor,y/factor);
+					Color c = img.getColor((int)(x/factor),(int)(y/factor));
 					
 					scaledImg.setColor(x, y, c);
 						
@@ -87,6 +68,30 @@ public class Image {
 			}
 			return scaledImg;
 	}
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
