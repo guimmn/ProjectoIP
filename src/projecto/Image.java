@@ -73,27 +73,6 @@ public class Image {
 
 	//4 - função que devolve selecção circular
 	
-	static ColorImage circleSelection(ColorImage img, int xCenter, int yCenter, int radius){
-		
-		//criar imagem com as dimensões correctas, para copiar selecção quadrada
-		ColorImage circleImg = new ColorImage(radius*2, radius*2);
-		
-			for(int x = 0; x < img.getWidth(); x++){
-				
-				for(int y = 0; y < img.getHeight(); y++){
-					
-					if(x >= xCenter - radius && x < xCenter + radius && y >= yCenter - radius && y < yCenter + radius){
-						
-						Color c = img.getColor(x, y);
-						circleImg.setColor(x, y, c);
-						
-					}
-				}
-			}
-						Image.inCircle(circleImg, xCenter, yCenter, radius);
-						return circleImg;
-	}
-	
 	//função auxiliar para (4)
 	static void inCircle(ColorImage img, int xCenter, int yCenter, int radius){
 		
@@ -111,6 +90,29 @@ public class Image {
 		}
 	}
 	
+	
+	static ColorImage circleSelection(ColorImage img, int xCenter, int yCenter, int radius){
+		
+		//criar imagem com as dimensões correctas, para copiar selecção quadrada
+		ColorImage circleImg = new ColorImage(radius*2, radius*2);
+		
+			for(int x = 0; x < img.getWidth(); x++){
+				
+				for(int y = 0; y < img.getHeight(); y++){
+					
+					if(x >= xCenter - radius && x < xCenter + radius && y >= yCenter - radius && y < yCenter + radius){
+						
+						Color c = img.getColor(x, y);
+						circleImg.setColor(x, y, c);
+						
+					}
+				}
+			}
+						Image.inCircle(circleImg, circleImg.getWidth()/2, circleImg.getHeight()/2, radius);
+						return circleImg;
+	}
+	
+
 	
 	
 	
