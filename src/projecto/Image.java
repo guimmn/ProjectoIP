@@ -90,6 +90,7 @@ public class Image {
 		}
 	}
 	
+	// por alguma razão para a img salazar com os valores 50, 50, 25 (por exemplo) dá out of bounds
 	
 	static ColorImage circleSelection(ColorImage img, int xCenter, int yCenter, int radius){
 		
