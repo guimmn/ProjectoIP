@@ -1,3 +1,4 @@
+package projecto;
 /**
  * Represents RGB colors.
  * RGB values are stored in a 3-position array, with values in the interval [0, 255].
@@ -6,7 +7,7 @@
  * rgb[2] - Blue
  */
 class Color {
-
+	
 	private final int[] rgb; // @color
 
 	/**
@@ -50,6 +51,18 @@ class Color {
 
 	static boolean valid(int value) {
 		return value >= 0 && value <= 255;
+	}
+	
+	//função auxiliar para comparar cores
+boolean isEqualTo(Color color){
+		
+		if(color == null){
+			
+			return false;
+		}
+		
+		return(getR()==color.getR() && getG()==color.getG() 
+				&& getB()==color.getB());
 	}
 
 }

@@ -1,3 +1,4 @@
+package projecto;
 
 
 import java.awt.image.BufferedImage;

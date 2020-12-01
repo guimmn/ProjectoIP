@@ -1,3 +1,4 @@
+package projecto;
 /**
  * Represents color images.
  * Image data is represented as a matrix:
