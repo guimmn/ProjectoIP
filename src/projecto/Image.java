@@ -4,6 +4,7 @@ public class Image {
 	
 	//imgs para teste
 	
+	static ColorImage blackSquare = new ColorImage(100,100);
 	
 	static ColorImage bg = new ColorImage("bg.png");
 	
@@ -70,9 +71,45 @@ public class Image {
 			return scaledImg;
 	}
 
+	//4 - função que devolve selecção circular
 	
+	static ColorImage circleSelection(ColorImage img, int xCenter, int yCenter, int radius){
+		
+		//criar imagem com as dimensões correctas, para copiar selecção quadrada
+		ColorImage circleImg = new ColorImage(radius*2, radius*2);
+		
+			for(int x = 0; x < img.getWidth(); x++){
+				
+				for(int y = 0; y < img.getHeight(); y++){
+					
+					if(x >= xCenter - radius && x < xCenter + radius && y >= yCenter - radius && y < yCenter + radius){
+						
+						Color c = img.getColor(x, y);
+						circleImg.setColor(x, y, c);
+						
+					}
+				}
+			}
+						Image.inCircle(circleImg, xCenter, yCenter, radius);
+						return circleImg;
+	}
 	
-	
+	//função auxiliar para (4)
+	static void inCircle(ColorImage img, int xCenter, int yCenter, int radius){
+		
+		for(int x = 0; x < img.getWidth(); x++){
+			
+			for(int y = 0; y < img.getHeight(); y++){
+				
+				double distance = Math.sqrt(Math.pow(x - xCenter, 2) + Math.pow(y - yCenter, 2));
+				
+					if(distance > radius){
+						
+						img.setColor(x, y, TRANSPARENT);
+					}
+			}
+		}
+	}
 	
 	
 	
