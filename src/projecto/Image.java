@@ -18,6 +18,8 @@ public class Image {
 	
 	static final Color TRANSPARENT = new Color(255,255,255);
 	
+	static Color colorTest = new Color(125,25,78);
+	
 	static int salazarxC = salazar.getWidth()/2;
 	
 	static int salazaryC = salazar.getHeight()/2;
@@ -117,6 +119,47 @@ public class Image {
 						return circleImg;
 	}
 	
+	
+	//5 - função para criar cópia a grayscale
+	
+	
+	//função que replica imagem a cores
+	static ColorImage replicate(ColorImage img){
+		
+		ColorImage replica = new ColorImage(img.getWidth(), img.getHeight());
+		
+		Image.paste(replica, img, 0, 0);
+		
+		return replica;
+		
+	}
+	
+	static Color changeToGray(Color c){
+		
+		int grayCode = (int)((0.3*c.getR()) + (0.59*c.getG()) + (0.11*c.getB()));
+		
+		Color gray = new Color(grayCode, grayCode, grayCode);
+		
+		return gray;
+		
+	}
+	
+	static ColorImage replicateGrayscale(ColorImage img){
+		
+		ColorImage replica = replicate(img);
+		
+			for(int x = 0; x < img.getWidth(); x++){
+				
+				for(int y = 0; y < img.getHeight(); y++){
+					
+					Color c = img.getColor(x, y);
+					Color gray = Image.changeToGray(c);
+					replica.setColor(x, y, gray);
+				}
+			}
+			return replica;
+		
+	}
 
 	
 	
