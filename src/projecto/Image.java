@@ -6,6 +6,8 @@ public class Image {
 	
 	static ColorImage blackSquare = new ColorImage(100,100);
 	
+	static ColorImage whiteSquare = new ColorImage("whiteSquare.jpeg");
+	
 	static ColorImage bg = new ColorImage("bg.png");
 	
 	static ColorImage salazar = new ColorImage("objc1(1).png");
@@ -15,6 +17,10 @@ public class Image {
 	static ColorImage pattern = new ColorImage("pattern.jpeg");
 	
 	static final Color TRANSPARENT = new Color(255,255,255);
+	
+	static int salazarxC = salazar.getWidth()/2;
+	
+	static int salazaryC = salazar.getHeight()/2;
 	
 	//1 - procedimento para colar uma imagem em cima de outra num determinado sítio
 	
@@ -70,30 +76,28 @@ public class Image {
 			}
 			return scaledImg;
 	}
-
-	//4 - função que devolve selecção circular
 	
 	//função auxiliar para (4)
-	static void inCircle(ColorImage img, int xCenter, int yCenter, int radius){
-		
-		for(int x = 0; x < img.getWidth(); x++){
+		static void inCircle(ColorImage img, int xCenter, int yCenter, int radius){
 			
-			for(int y = 0; y < img.getHeight(); y++){
+			for(int x = 0; x < img.getWidth(); x++){
 				
-				double distance = Math.sqrt(Math.pow(x - xCenter, 2) + Math.pow(y - yCenter, 2));
-				
-					if(distance > radius){
-						
-						img.setColor(x, y, TRANSPARENT);
-					}
+				for(int y = 0; y < img.getHeight(); y++){
+					
+					double distance = Math.sqrt(Math.pow(x - xCenter, 2) + Math.pow(y - yCenter, 2));
+					
+						if(distance > radius){
+							
+							img.setColor(x, y, TRANSPARENT);
+						}
+				}
 			}
 		}
-	}
-	
-	// por alguma razão para a img salazar com os valores 50, 50, 25 (por exemplo) dá out of bounds
+		
+	//4 - função para criar selecções circulares
 	
 	static ColorImage circleSelection(ColorImage img, int xCenter, int yCenter, int radius){
-		
+
 		//criar imagem com as dimensões correctas, para copiar selecção quadrada
 		ColorImage circleImg = new ColorImage(radius*2, radius*2);
 		
@@ -104,7 +108,7 @@ public class Image {
 					if(x >= xCenter - radius && x < xCenter + radius && y >= yCenter - radius && y < yCenter + radius){
 						
 						Color c = img.getColor(x, y);
-						circleImg.setColor(x, y, c);
+						circleImg.setColor(x - (xCenter-radius), y - (yCenter - radius), c);
 						
 					}
 				}
@@ -114,7 +118,6 @@ public class Image {
 	}
 	
 
-	
 	
 	
 	
