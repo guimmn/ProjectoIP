@@ -42,19 +42,21 @@ public class Image {
 	}
 	
 	//1 - procedimento para colar uma imagem em cima de outra num determinado sítio
+	// (x,y) correspondem ao canto superior esquerdo, ou seja onde começa a colar a img
 	
 	static void paste(ColorImage base, ColorImage img, int x, int y){
 		
-		for(int xi = x; xi < img.getWidth(); x++){
+		for(int xi = 0; xi < img.getWidth(); xi++){
 			
-			for(int yi = x; yi < img.getHeight(); y++){
-				
-				if(Image.isValidPosition(base, xi, yi)){
+			for(int yi = 0; yi < img.getHeight(); yi++){
 				
 				Color c = img.getColor(xi, yi);
 				
-				base.setColor(xi, yi, c);
-				}
+				if(Image.isValidPosition(base, xi + x, yi + y)){
+				
+					base.setColor(xi + x , yi + y, c);
+
+				}				
 			}
 		}
 	}
@@ -111,7 +113,7 @@ public class Image {
 
 		//criar imagem com as dimensões correctas, para copiar selecção quadrada
 		ColorImage circleImg = new ColorImage(radius*2, radius*2);
-		
+				
 			for(int x = 0; x < img.getWidth(); x++){
 				
 				for(int y = 0; y < img.getHeight(); y++){
@@ -126,8 +128,7 @@ public class Image {
 			}
 						Image.inCircle(circleImg, circleImg.getWidth()/2, circleImg.getHeight()/2, radius);
 						return circleImg;
-	}
-	
+	}	
 	
 	//5 - função para criar cópia a grayscale
 	
@@ -172,7 +173,7 @@ public class Image {
 		
 	}
 
-	//2 - função que cria fundo de poster baseado num dado padrão
+	//2 - função que cria fundo de poster baseado num dado padrão e dimensões
 	
 	static ColorImage backgroundPattern(ColorImage img, int width, int height){
 		
@@ -182,6 +183,7 @@ public class Image {
 			
 			for(int x = 0; x < bg.getWidth(); x += img.getWidth()){
 				
+				Image.paste(bg, img, x, y);
 				
 			}
 		}
