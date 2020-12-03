@@ -2,7 +2,7 @@ package projecto;
 
 public class Image {
 	
-	//imgs para teste
+	//imgs e cores para teste
 	
 	static ColorImage blackSquare = new ColorImage(100,100);
 	
@@ -24,41 +24,50 @@ public class Image {
 	
 	static int salazaryC = salazar.getHeight()/2;
 	
+	//função auxiliar para validar posições
+	
+	static boolean isValidPosition(ColorImage img, int x, int y){
+		
+		boolean isValid = false;
+		
+		if(x >= 0 && y >= 0 && x < img.getWidth() && y < img.getHeight()){
+			
+			isValid = true;
+			
+		} else {
+			
+			isValid = false;
+		}
+		return isValid;
+	}
+	
 	//1 - procedimento para colar uma imagem em cima de outra num determinado sítio
 	
-	static void paste(ColorImage base, ColorImage paste, int x, int y){
+	static void paste(ColorImage base, ColorImage img, int x, int y){
 		
-		for(int xi = 0; xi < base.getWidth(); xi++){
+		for(int xi = x; xi < img.getWidth(); x++){
 			
-			for(int yi = 0; yi < base.getHeight(); yi++){
+			for(int yi = x; yi < img.getHeight(); y++){
 				
-				if(xi >= x && xi < x + paste.getWidth() && yi >= y && yi < y + paste.getHeight()){
-					if(!(paste.getColor(xi - x, yi - x).isEqualTo(TRANSPARENT))){
+				if(Image.isValidPosition(base, xi, yi)){
 				
-						Color c = paste.getColor(xi - x, yi - y);
-					
-						base.setColor(xi, yi, c);
-					}
+				Color c = img.getColor(xi, yi);
+				
+				base.setColor(xi, yi, c);
 				}
-			}	
-			
+			}
 		}
-		
 	}
 	
-	
-	
-	//função de teste para 1
-	// ! dá erro no getcolor quando uso img a preto e branco !
-	// não percebo porquê...
-	
-	static ColorImage pasteTest(ColorImage base, ColorImage paste){
-	
-		Image.paste(base, paste, 0, 0);
+	// paste teste
+	static ColorImage pasteTest(ColorImage base, ColorImage img, int x, int y){
+		
+		Image.paste(base, img, x, y);
 		
 		return base;
-		
+	
 	}
+	
 	
 	//3 - função para duplicar uma imagem e redefinir o seu tamanho conforme um factor
 	//esta parece estar a funcionar perfeitamente!
@@ -134,6 +143,7 @@ public class Image {
 		
 	}
 	
+	// criar uma cor cinza correspondente a uma cor dada
 	static Color changeToGray(Color c){
 		
 		int grayCode = (int)((0.3*c.getR()) + (0.59*c.getG()) + (0.11*c.getB()));
@@ -144,6 +154,7 @@ public class Image {
 		
 	}
 	
+	//junta as duas funções de cima para fazer uma réplica a preto e branco
 	static ColorImage replicateGrayscale(ColorImage img){
 		
 		ColorImage replica = replicate(img);
@@ -161,9 +172,23 @@ public class Image {
 		
 	}
 
+	//2 - função que cria fundo de poster baseado num dado padrão
 	
-	
-	
+	static ColorImage backgroundPattern(ColorImage img, int width, int height){
+		
+		ColorImage bg = new ColorImage(width, height);
+		
+		for(int y = 0; y < bg.getHeight(); y += img.getHeight()){
+			
+			for(int x = 0; x < bg.getWidth(); x += img.getWidth()){
+				
+				
+			}
+		}
+		return bg;
+		
+		
+	}
 	
 	
 	
