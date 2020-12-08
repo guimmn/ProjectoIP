@@ -1,52 +1,75 @@
 package projecto;
 
-public class Teste {
+public class Teste {	
+	
+	//imgs e cores para teste
+	
+		static ColorImage blackSquare = new ColorImage(100,100);
+				
+		static ColorImage bg = new ColorImage("bg.png");
+		
+		static ColorImage salazar = new ColorImage("objc1(1).png");
+					
+		static ColorImage pattern = new ColorImage("pattern.jpeg");
+		
+		static final Color TRANSPARENT = new Color(255,255,255);
+				
+		static Layer testLayer =  new Layer(salazar, "salazar", 0.5, 50, 50);
 
-	static ColorImage salazar = new ColorImage("objc1(1).png");
-	static Layer teste1 =  new Layer(salazar, "salazar", 0.5, 0,0);
 
-	static String testName(){
+//Testes da Class Image
 	
-		teste1.setName("Jeff");
+	static ColorImage whiteBgTest(int width, int height){
 		
-		return teste1.getName();
-		}
-	
-	static int[] testCoordinates(){
+		ColorImage bg = Image.whiteBg(width, height);
 		
-		return teste1.getCoordinates();
+		return bg;
 	}
 	
-	static double testFactor(){
+	//teste da função paste (1.1)
+	static ColorImage pasteTest(ColorImage base, ColorImage img, int x, int y){
 		
-		return teste1.getFactor();
+		Image.paste(base, img, x, y);
+		
+		return base;
+	
 	}
 	
-	static ColorImage testOriginal(){
-		
-		return teste1.getOriginal();
-	}
-	
+	//teste da função que cria padrões (1.2)
+	static ColorImage backgroundPatternTest(ColorImage img, int width, int height){
 
-	static void testAll(){
+		ColorImage test = Image.backgroundPattern(img, width, height);
 		
-		Layer teste = new Layer(salazar,"", 0.5, 0, 0);
-		
-		teste.setName("salazar");
-		teste.setScale(2);
-		teste.setPosition(1, 2);
-		
-		
+		return test;
 	}
 	
+//Testes da Etapa 2
 	
+	static String nameTest(){
+		
+		testLayer.setName("Jeff");
+		return testLayer.getName();
+	}
 	
+	static double scaleTest(){
+		
+		testLayer.setScale(0.5);
+		return testLayer.getScale();
+	}
 	
+	static int[] positionTest(){
+		
+		testLayer.setPosition(5, 5);
+		return testLayer.getPosition();
+	}
 	
-	
-	
-	
-	
+	static ColorImage getLayerTest(){
+		
+		ColorImage test = testLayer.getLayer();
+		
+		return test;
+	}
+
 	
 	
 	

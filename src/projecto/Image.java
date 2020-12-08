@@ -2,27 +2,7 @@ package projecto;
 
 public class Image {
 	
-	//imgs e cores para teste
-	
-	static ColorImage blackSquare = new ColorImage(100,100);
-	
-	static ColorImage whiteSquare = new ColorImage("whiteSquare.jpeg");
-	
-	static ColorImage bg = new ColorImage("bg.png");
-	
-	static ColorImage salazar = new ColorImage("objc1(1).png");
-		
-	static ColorImage rectangle = new ColorImage("rectangle.jpeg");
-	
-	static ColorImage pattern = new ColorImage("pattern.jpeg");
-	
 	static final Color TRANSPARENT = new Color(255,255,255);
-	
-	static Color colorTest = new Color(125,25,78);
-	
-	static int salazarxC = salazar.getWidth()/2;
-	
-	static int salazaryC = salazar.getHeight()/2;
 	
 	//função auxiliar para validar posições
 	
@@ -61,14 +41,6 @@ public class Image {
 		}
 	}
 	
-	// paste teste
-	static ColorImage pasteTest(ColorImage base, ColorImage img, int x, int y){
-		
-		Image.paste(base, img, x, y);
-		
-		return base;
-	
-	}
 	
 	
 	//3 - função para duplicar uma imagem e redefinir o seu tamanho conforme um factor
@@ -192,7 +164,21 @@ public class Image {
 		
 	}
 	
-	
+	//função auxiliar para criar fundo branco
+	static ColorImage whiteBg(int width, int height){
+		
+		ColorImage bg = new ColorImage(width, height);
+		
+			for(int y = 0; y < bg.getHeight(); y++){
+				
+				for(int x = 0; x < bg.getWidth(); x++){
+					
+					Color c =  TRANSPARENT;
+					bg.setColor(x, y, c);
+				}
+			}
+			return bg;
+	}
 	
 	
 	

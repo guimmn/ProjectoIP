@@ -13,37 +13,22 @@ public class Layer {
 	
 	//status, se está activa ou não
 	boolean active = true;
-
-	
 	
 	
 //Construtores
-	
+		
+	//Método 1
 	Layer(ColorImage img, String name, double factor, int x, int y){
 		
-		if(factor <= 0){
-			throw new IllegalArgumentException("factor tem de ser maior que 0!");
-		}
-		
+		this.img = img;
 		this.name = name;
-		active = true;
+		this.factor = factor;
+		this.x = x;
+		this.y = y;
+		this.active = true;
 		
-		this.img = Image.scale(img, factor);
-	}
 
-	
-	//Método 1
-//	Layer(ColorImage img, String name, double factor, int x, int y){
-//		
-//		this.img = img;
-//		this.name = name;
-//		this.factor = factor;
-//		this.x = x;
-//		this.y = y;
-//		this.active = true;
-//		
-//
-//	}
+	}
 
 	//Método 2
 	Layer(ColorImage img, int x, int y){
@@ -73,7 +58,7 @@ public class Layer {
 			throw new IllegalArgumentException("factor tem de ser maior que 0!");
 		}
 		
-		Image.scale(img, factor);
+		this.factor = factor;
 	}
 	
 	//Muda o posicionamento no poster
@@ -104,13 +89,13 @@ public class Layer {
 	}
 	
 	//diz o factor de escala da layer
-	double getFactor(){
+	double getScale(){
 		
 		return this.factor;
 	}
 	
 	//diz as coordenadas do obj layer no poster
-	int[] getCoordinates(){
+	int[] getPosition(){
 		
 		int[] coordinates = new int[2];
 		
@@ -120,15 +105,20 @@ public class Layer {
 			return coordinates;
 	}
 	
-	//get desnecessário para o projecto, acho eu
-	ColorImage getOriginal(){
+	ColorImage getLayer(){
 		
-		return this.img;
-	}
-	
-	ColorImage getLayerFinal(){
+		ColorImage scaledImg = Image.scale(img, factor);
 		
-		return this.img;
+		ColorImage white = Image.whiteBg(x + scaledImg.getWidth(), y + scaledImg.getHeight());
+		
+		Image.paste(white, scaledImg, x, y);
+		
+		return white;
+		
+		
+		
+
+		
 	}
 	
 	
