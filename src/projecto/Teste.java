@@ -244,6 +244,10 @@ public class Teste {
 		salazar0.setPosition(150, 50);
 		salazar0.setScale(0.5);
 		ColorImage check2 = estadoNovo1.getFinalPoster();
+		
+		estadoNovo1.addLayer(testSalazarCircle);
+		testSalazarCircle.setPosition(0, 0);
+		ColorImage check3 = estadoNovo1.getFinalPoster();
 	}
 	
 	
