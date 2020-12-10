@@ -49,19 +49,45 @@ public class Teste {
 		return test;
 	}
 	
+	//teste da função que cria uma reṕlica redimensionada (1.3)
+	static ColorImage scaleTest(ColorImage img, double factor){
+		
+		ColorImage scaledImg = Image.scale(img, factor);
+		
+		return scaledImg;
+	}
+	
+	//teste da função que cria uma selecção circular (1.4)
+	static ColorImage circleSelectionTest(ColorImage img, int x, int y, int radius){
+		
+		ColorImage circleSelec = Image.circleSelection(img, x, y, radius);
+		
+		return circleSelec;
+		
+	}
+	
+	//teste da função que cria réplica em "grayscale" (1.5)
+	static ColorImage replicateGrayscaleTest(ColorImage img){
+		
+		ColorImage grayImg = Image.replicateGrayscale(img);
+		
+		return grayImg;
+	}
+	
+	
 //Testes da Class Layer
 	
 	static Layer testLayer =  new Layer(salazar, "salazar", 0.5, 50, 50);
 	
 	static Layer testLayer1 =  new Layer(salazar, "salazar", 1.0, 50, 50);
 
-	static Layer testPreto = new Layer(blackSquare,"preto",1,0,0);
+	static Layer testPreto = new Layer(blackSquare,"preto",1,350,200);
 	
 	static Layer testBranco = new Layer(whiteSquare,"branco",1,0,0);
 	
 	static Layer testSalazarCircle = new Layer(salazarCircle,"salazarCircle",0.5,100,100);
 	
-	static Layer testSalazarGray = new Layer(salazarGray,"salazarGray",0.3,200,100);
+	static Layer testSalazarGray = new Layer(salazarGray,"salazarGray",0.7,250,50);
 	
 	static String nameTest(){
 		
@@ -69,7 +95,7 @@ public class Teste {
 		return testLayer.getName();
 	}
 	
-	static double scaleTest(){
+	static double setScaleTest(){
 		
 		testLayer.setScale(0.5);
 		return testLayer.getScale();
@@ -192,14 +218,28 @@ public class Teste {
 		estadoNovo.addLayer(testSalazarCircle);
 		estadoNovo.addLayer(testSalazarGray);
 		
-		ColorImage posterFinal = estadoNovo.finalPoster();
+		ColorImage posterFinal = estadoNovo.getFinalPoster();
 		
 		return posterFinal;
 		
 		
 	}
 	
-	
+	//teste para verificar alterações de escala e posição
+	static void posterFinalTest1(){
+		
+		Poster estadoNovo1 = new Poster(400,225);
+		
+		Layer salazar0 = new Layer(salazar);
+		
+		estadoNovo1.setBackground(pattern);
+		estadoNovo1.addLayer(salazar0);
+		ColorImage check1 = estadoNovo1.getFinalPoster();
+		
+		salazar0.setPosition(150, 50);
+		salazar0.setScale(0.5);
+		ColorImage check2 = estadoNovo1.getFinalPoster();
+	}
 	
 	
 	

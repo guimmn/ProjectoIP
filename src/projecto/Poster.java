@@ -112,7 +112,7 @@ public class Poster {
 		layers[b] = a0;
 	}
 	
-	ColorImage finalPoster(){
+	ColorImage getFinalPoster(){
 		
 		ColorImage finalPoster = Image.whiteBg(width, height);
 		

@@ -56,6 +56,10 @@ public class Image {
 	
 	static ColorImage scale(ColorImage img, double factor){
 		
+		if(factor <= 0.0){
+			throw new IllegalArgumentException("factor tem de ser maior que 0");
+		}
+		
 		ColorImage scaledImg = new ColorImage((int)(img.getWidth()*factor),(int)(img.getHeight()*factor));
 		
 			for(int x = 0; x < scaledImg.getWidth() ; x++){
