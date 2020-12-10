@@ -114,6 +114,11 @@ public class Teste {
 		return test;
 	}
 	
+	static void nullImgTest(ColorImage img){
+		
+		Layer nullTest = new Layer(img);
+	}
+	
 //Testes da Class Poster
 	
 	static Poster test1 = new Poster(200,400);

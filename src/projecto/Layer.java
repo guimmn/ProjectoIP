@@ -19,6 +19,10 @@ public class Layer {
 		
 	//Método 1
 	Layer(ColorImage img, String name, double factor, int x, int y){
+
+		if(img == null){
+			throw new NullPointerException("tem que seleccionar uma img, não pode ser null");
+		}
 		
 		this.img = img;
 		this.name = name;

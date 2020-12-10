@@ -26,6 +26,10 @@ public class Poster {
 	//1
 	void setBackground(ColorImage img){
 		
+		if(img == null){
+			throw new NullPointerException("tem que seleccionar uma img, não pode ser null");
+		}
+		
 		ColorImage background = Image.backgroundPattern(img, width, height);
 		
 		layers[0] = new Layer(background,"bg",1.0,0,0);
