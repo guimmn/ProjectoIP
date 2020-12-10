@@ -5,12 +5,19 @@ public class Teste {
 	//imgs e cores para teste
 	
 		static ColorImage blackSquare = new ColorImage(100,100);
+		
+		static ColorImage whiteSquare = Image.whiteBg(100, 100);
 				
 		static ColorImage bg = new ColorImage("bg.png");
 		
 		static ColorImage salazar = new ColorImage("objc1(1).png");
 					
 		static ColorImage pattern = new ColorImage("pattern.jpeg");
+		
+		static ColorImage salazarCircle = Image.circleSelection(salazar, 90, 100, 90);
+		
+		static ColorImage salazarGray = Image.replicateGrayscale(salazar);
+				
 		
 		static final Color TRANSPARENT = new Color(255,255,255);
 				
@@ -50,6 +57,11 @@ public class Teste {
 
 	static Layer testPreto = new Layer(blackSquare,"preto",1,0,0);
 	
+	static Layer testBranco = new Layer(whiteSquare,"branco",1,0,0);
+	
+	static Layer testSalazarCircle = new Layer(salazarCircle,"salazarCircle",0.5,100,100);
+	
+	static Layer testSalazarGray = new Layer(salazarGray,"salazarGray",0.3,200,100);
 	
 	static String nameTest(){
 		
@@ -80,8 +92,8 @@ public class Teste {
 	
 	static Poster test1 = new Poster(200,400);
 	
+	
 	static ColorImage setBackgroundTest(){
-		
 		
 		test1.setBackground(pattern);
 		Layer test = test1.getBackground();
@@ -151,10 +163,41 @@ public class Teste {
 		y = test1.layers.length;
 	}
 	
+	static void swapLayerTest(){
+		
+		test1.setBackground(pattern);
+		ColorImage layer0 = test1.layers[0].getLayer();
+		test1.addLayer(testLayer);
+		ColorImage layer1 = test1.layers[1].getLayer();
+		
+		//trocar layer 0 com layer 1
+		test1.swapLayer(0, 1);
+		//verificar
+		ColorImage newLayer0 = test1.layers[0].getLayer();
+		ColorImage newLayer1 = test1.layers[1].getLayer();
+	}
 	
 	
-	
-	
+	static ColorImage finalPosterTest(){
+		
+		//definir dimensões da tela
+		Poster estadoNovo = new Poster(400,225);
+		
+		//criar layers que constituem o poster
+		estadoNovo.setBackground(pattern);
+		estadoNovo.addLayer(testLayer);//salazar em (50,50), f=0.5
+		estadoNovo.addLayer(testPreto);//quadrado preto em (0,0), f=1
+		estadoNovo.addLayer(testBranco);//quadrado branco em (0,0), f=1
+		
+		estadoNovo.addLayer(testSalazarCircle);
+		estadoNovo.addLayer(testSalazarGray);
+		
+		ColorImage posterFinal = estadoNovo.finalPoster();
+		
+		return posterFinal;
+		
+		
+	}
 	
 	
 	

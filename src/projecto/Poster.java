@@ -112,6 +112,17 @@ public class Poster {
 		layers[b] = a0;
 	}
 	
+	ColorImage finalPoster(){
+		
+		ColorImage finalPoster = Image.whiteBg(width, height);
+		
+		for(int i = 0; i < next; i++){
+			
+			Image.paste(finalPoster, layers[i].getLayer(), 0, 0);
+		}
+		
+		return finalPoster;
+	}
 	
 	
 	

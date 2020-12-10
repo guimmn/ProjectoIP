@@ -4,6 +4,14 @@ public class Image {
 	
 	static final Color TRANSPARENT = new Color(255,255,255);
 	
+	static ColorImage salazar = new ColorImage("objc1(1).png");
+	
+	static ColorImage pattern = new ColorImage("pattern.jpeg");
+	
+	static ColorImage blackSquare = new ColorImage(100,100);
+	
+	static ColorImage whiteSquare = Image.whiteBg(100, 100);
+	
 	//função auxiliar para validar posições
 	
 	static boolean isValidPosition(ColorImage img, int x, int y){
@@ -32,7 +40,7 @@ public class Image {
 				
 				Color c = img.getColor(xi, yi);
 				
-				if(Image.isValidPosition(base, xi + x, yi + y)){
+				if(Image.isValidPosition(base, xi + x, yi + y) && !c.isEqualTo(TRANSPARENT)){
 				
 					base.setColor(xi + x , yi + y, c);
 
