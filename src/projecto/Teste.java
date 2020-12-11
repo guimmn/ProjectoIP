@@ -248,6 +248,9 @@ public class Teste {
 		estadoNovo1.addLayer(testSalazarCircle);
 		testSalazarCircle.setPosition(0, 0);
 		ColorImage check3 = estadoNovo1.getFinalPoster();
+		
+		estadoNovo1.layers[2].deactivate();
+		ColorImage check4 = estadoNovo1.getFinalPoster();
 	}
 	
 	

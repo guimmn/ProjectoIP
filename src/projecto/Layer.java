@@ -11,7 +11,7 @@ public class Layer {
 	int y;
 	double factor;
 	
-	//status, se está activa ou não
+	//status, se está activa ou não, por defeito está activa.
 	boolean active = true;
 	
 	
@@ -29,9 +29,6 @@ public class Layer {
 		this.factor = factor;
 		this.x = x;
 		this.y = y;
-		this.active = true;
-		
-
 	}
 
 	//Método 2
@@ -72,15 +69,13 @@ public class Layer {
 		this.y = y;
 	}
 	
-	//não percebi bem esta alínea ...
+	//"self-explanatory"
 	void activate(){
-		
-		this.active = true;
+		active = true;
 	}
 	
 	void deactivate(){
-		
-		this.active = false;
+		active = false;
 	}
 
 	

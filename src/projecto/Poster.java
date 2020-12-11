@@ -122,7 +122,10 @@ public class Poster {
 		
 		for(int i = 0; i < next; i++){
 			
+			if(layers[i].active){
+			
 			Image.paste(finalPoster, layers[i].getLayer(), 0, 0);
+			}
 		}
 		
 		return finalPoster;
