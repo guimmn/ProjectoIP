@@ -66,6 +66,14 @@ public class Poster {
 	//3
 	void removeLayer(int index){
 		
+		if(index < 0){
+			throw new IllegalArgumentException("index tem que ser maior que 0");
+		}
+		
+		if(index == 0){
+			throw new IllegalStateException("Não podes remover o fundo, se quiseres mudá-lo usa o setBackground");
+		}
+		
 		if(index >= next){
 			
 			throw new IllegalStateException("a posição escolhida não tem nenhuma imagem");
@@ -84,6 +92,14 @@ public class Poster {
 	
 	//4
 	void insertLayer(Layer layer,int index){
+		
+		if(index < 0){
+			throw new IllegalArgumentException("index tem que ser maior que 0");
+		}
+		
+		if(index == 0){
+			throw new IllegalStateException("Não podes inserir uma layer no fundo, se quiseres mudar o fundo usa o setBackground");
+		}
 		
 		if(layers.length == next){
 			
@@ -108,6 +124,14 @@ public class Poster {
 	
 	//5
 	void swapLayer(int a, int b){
+		
+		if(a < 0 || b < 0){
+			throw new IllegalArgumentException("index tem que ser maior que 0");
+		}
+		
+		if(a == 0 || b == 0){
+			throw new IllegalStateException("Não podes fazer swap com o fundo, se quiseres mudar o fundo usa o setBackground");
+		}
 		
 		Layer a0 = layers[a];
 		Layer b0 = layers[b];

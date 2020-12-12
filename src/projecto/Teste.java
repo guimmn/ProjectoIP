@@ -200,12 +200,16 @@ public class Teste {
 		ColorImage layer0 = test1.layers[0].getLayer();
 		test1.addLayer(testLayer);
 		ColorImage layer1 = test1.layers[1].getLayer();
+		test1.addLayer(testSalazarCircle);
+		ColorImage layer2 = test1.layers[2].getLayer();
 		
 		//trocar layer 0 com layer 1
-		test1.swapLayer(0, 1);
+		test1.swapLayer(1, 2);
 		//verificar
-		ColorImage newLayer0 = test1.layers[0].getLayer();
-		ColorImage newLayer1 = test1.layers[1].getLayer();
+		ColorImage newLayer0 = test1.layers[1].getLayer();
+		ColorImage newLayer1 = test1.layers[2].getLayer();
+		
+		ColorImage testBg = test1.getFinalPoster();
 	}
 	
 	
@@ -254,8 +258,28 @@ public class Teste {
 	}
 	
 	
+	static void illegalBgStatesTest(){
+		
+		Poster testState = new Poster(100,100);
+		
+		testState.setBackground(pattern);
+		
+//		testState.insertLayer(testSalazarCircle, 0);
+		
+		testState.addLayer(testSalazarCircle);
+		testState.swapLayer(0, 1);
+	}
 	
-	
+	static void illegalArgTest(){
+		
+		Poster testArg = new Poster(400,225);
+		
+		testArg.setBackground(pattern);
+		testArg.addLayer(testSalazarCircle);
+		testArg.insertLayer(testSalazarCircle, 2);
+		ColorImage test = testArg.getFinalPoster();
+		testArg.insertLayer(testPreto, -1);
+	}
 	
 	
 	
