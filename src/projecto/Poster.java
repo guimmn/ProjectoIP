@@ -6,7 +6,7 @@ public class Poster {
 	int height;
 	int next;
 	
-	static final int SIZE_INIT = 4; 
+	static final int SIZE_INIT = 100; 
 	
 	Layer[] layers;
 	
@@ -65,7 +65,7 @@ public class Poster {
 	
 	//3
 	void removeLayer(int index){
-		
+				
 		if(index < 0){
 			throw new IllegalArgumentException("index tem que ser maior que 0");
 		}
@@ -78,20 +78,30 @@ public class Poster {
 			
 			throw new IllegalStateException("a posição escolhida não tem nenhuma imagem");
 		}
+		
+		if(index == next - 1){
+		layers[index] = null;
+		next--;
+	} else {
 	
 		layers[index] = null;
 		next = next -1 ;
 		
-			for(int i = layers.length; i > index; i--){
+			for(int i = next; i > index; i--){
 				
-				layers[i] = layers[i-1];
+				layers[i-1] = layers[i];
 				
 			}
 
+		}
 	}
 	
 	//4
 	void insertLayer(Layer layer,int index){
+		
+		if(index >= layers.length){
+			throw new IllegalStateException("Não existe essa posição no álbum");
+		}
 		
 		if(index < 0){
 			throw new IllegalArgumentException("index tem que ser maior que 0");
@@ -113,15 +123,21 @@ public class Poster {
 				layers = resized;
 		}
 		
-		for(int i = next - 1; i > index; i--){
-			
-			layers[i] = layers[i-1];
-		}
+		if(index >= next){
+			layers[next] = layer;
+			next ++;//se fizer insert para lá do next é como fazer addlayer
 		
-		layers[index] = layer;
-		next++;
+		} else {
+		
+			for(int i = next; i > index; i--){
+			
+				layers[i] = layers[i-1];
+			}
+			
+			layers[index] = layer;
+			next++;
+		}
 	}
-	
 	//5
 	void swapLayer(int a, int b){
 		

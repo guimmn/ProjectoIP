@@ -149,7 +149,6 @@ public class Teste {
 		
 	}
 	
-	//coloquei temporariamente o SIZE_INIT a 2
 	static void removeLayerTest(){
 		
 		test1.setBackground(pattern); //add bg
@@ -165,6 +164,22 @@ public class Teste {
 		
 		test1.removeLayer(2);//esta parte deve dar erro
 		
+	}
+	
+	static void removeLastLayerTest(){
+		
+		test1.setBackground(pattern); //add bg
+		test1.addLayer(testLayer); //add layer
+		test1.addLayer(testLayer1);// add layer c img maior
+		ColorImage test = test1.layers[2].getLayer(); //vê layer no i=2
+		int x = test1.next;//nº de imagens
+		
+		test1.removeLayer(2);
+		x = test1.next;
+		test = test1.layers[1].getLayer();
+		test = test1.layers[2].getLayer();//deve dar erro
+		
+
 	}
 	
 	//coloquei o INIT_SIZE a 4 temporariamente
@@ -191,7 +206,45 @@ public class Teste {
 		
 		//para verificar se album aumentou e se a ultima é o preto
 		x = test1.next;
-		y = test1.layers.length;
+		quadrado = test1.layers[test1.next-1].getLayer();
+	}
+	
+	static void inserLayerBeyondNextTest(){
+	
+		test1.setBackground(pattern);
+		test1.addLayer(testPreto);
+		test1.addLayer(testPreto);
+		test1.addLayer(testPreto);
+		
+		int x = test1.next;
+		
+		test1.insertLayer(testSalazarCircle, 4);
+		test1.insertLayer(testSalazarGray, 67);
+		
+		ColorImage circle = test1.layers[4].getLayer();
+		ColorImage gray = test1.layers[5].getLayer();
+	}
+	
+	static void insertTest(){
+		
+		Poster testInsert = new Poster(100,100);
+		
+		testInsert.setBackground(pattern);
+		
+		int x = testInsert.next;
+		
+		testInsert.insertLayer(testSalazarGray, 3);
+		
+		x = testInsert.next;
+		
+		String testName = testInsert.layers[1].getName();
+		
+		testInsert.insertLayer(testSalazarCircle, 3);
+		
+		String testName2 = testInsert.layers[2].getName();
+		
+		testInsert.insertLayer(testPreto, 4);
+		
 	}
 	
 	static void swapLayerTest(){
@@ -257,14 +310,13 @@ public class Teste {
 		ColorImage check4 = estadoNovo1.getFinalPoster();
 	}
 	
-	
 	static void illegalBgStatesTest(){
 		
 		Poster testState = new Poster(100,100);
 		
 		testState.setBackground(pattern);
 		
-//		testState.insertLayer(testSalazarCircle, 0);
+		testState.insertLayer(testSalazarCircle, 0);//toggle com comment
 		
 		testState.addLayer(testSalazarCircle);
 		testState.swapLayer(0, 1);
